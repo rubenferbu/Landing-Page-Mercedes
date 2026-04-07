@@ -1,0 +1,991 @@
+/*
+   VARIABLES & RESET
+*/
+:root {
+    --primary-color: #000000;
+    --secondary-color: #ffffff;
+    --accent-color: #cccccc;
+    --text-color: #333333;
+    --font-family: 'Roboto', sans-serif;
+    --font-serif: Georgia, 'Times New Roman', serif;
+    --header-height: 64px;
+    --sidebar-width: 280px;
+    --transition: 0.3s ease;
+    --radius-card: 12px;
+    --radius-pill: 20px;
+    --section-padding-mobile: 24px 16px;
+    --section-padding-desktop: 40px 32px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/*
+   ACCESIBILIDAD
+*/
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/*
+   CHECKBOX OCULTO (truco nav)
+*/
+.nav-toggle {
+    display: none;
+}
+
+/*
+   HEADER — Mobile First
+*/
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: var(--secondary-color);
+    height: var(--header-height);
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--accent-color);
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.logo img {
+    display: block;
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+/*
+   NAV — Mobile First (sidebar oculta)
+*/
+#nav-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: var(--sidebar-width);
+    background-color: var(--secondary-color);
+    z-index: 200;
+    padding: 80px 32px 32px;
+    border-left: 1px solid var(--accent-color);
+    transform: translateX(100%);
+    transition: transform var(--transition);
+}
+
+#nav-menu ul {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+#nav-menu a {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: var(--primary-color);
+    transition: color var(--transition);
+}
+
+#nav-menu a:hover {
+    color: var(--accent-color);
+}
+
+/*
+   ICONOS DERECHA
+*/
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.nav-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--primary-color);
+    background: none;
+    border: none;
+    transition: color var(--transition);
+}
+
+.nav-icon:hover {
+    color: var(--accent-color);
+}
+
+.nav-hamburger {
+    display: flex;
+}
+
+/*
+   OVERLAY
+*/
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 150;
+    cursor: pointer;
+}
+
+/*
+   TRUCO CHECKBOX
+*/
+.nav-toggle:checked~header #nav-menu {
+    transform: translateX(0);
+}
+
+.nav-toggle:checked~.sidebar-overlay {
+    display: block;
+}
+
+/*
+   HERO — Mobile First
+*/
+.hero {
+    position: relative;
+    width: 100%;
+    height: 420px;
+    overflow: hidden;
+}
+
+.hero__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.1) 50%, transparent 100%);
+}
+
+.hero__content {
+    position: absolute;
+    bottom: 28px;
+    left: 28px;
+    z-index: 1;
+    color: var(--secondary-color);
+}
+
+.hero__title {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+    margin-bottom: 6px;
+}
+
+.hero__subtitle {
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+}
+
+/*
+   PRODUCTS — Mobile First
+*/
+.products {
+    padding: var(--section-padding-mobile);
+}
+
+.products__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+/*
+   CARD
+*/
+.card {
+    background-color: #f2f2f2;
+    border-radius: var(--radius-card);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.card__header {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    text-align: center;
+}
+
+.card__type {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+.card__model {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--text-color);
+}
+
+.card__img {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+}
+
+.card__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+}
+
+.card__btn {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+    border: 1px solid var(--accent-color);
+    border-radius: var(--radius-pill);
+    padding: 6px 16px;
+    transition: background-color var(--transition), color var(--transition);
+}
+
+.card__btn:hover {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+.card__colors {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.card__color {
+    display: block;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+/*
+   DEALER — Mobile First
+*/
+.dealer__text {
+    padding: 32px 24px;
+    text-align: center;
+    background-color: #f2f2f2;
+}
+
+.dealer__title {
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--primary-color);
+    margin-bottom: 16px;
+    font-family: var(--font-serif);
+}
+
+.dealer__desc {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--text-color);
+    line-height: 1.6;
+    max-width: 340px;
+    margin: 0 auto;
+}
+
+.dealer__map {
+    position: relative;
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+}
+
+.dealer__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.dealer__card {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    background-color: rgba(50, 50, 60, 0.75);
+    backdrop-filter: blur(4px);
+    border-radius: var(--radius-card);
+    padding: 24px;
+    max-width: 260px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.dealer__card-title {
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--secondary-color);
+    line-height: 1.3;
+}
+
+.dealer__card-btn {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+    border-radius: var(--radius-pill);
+    padding: 8px 16px;
+    align-self: flex-start;
+    transition: background-color var(--transition), color var(--transition);
+}
+
+.dealer__card-btn:hover {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+/*
+   FEATURES — Mobile First
+*/
+.features {
+    padding: 24px 0;
+    overflow: hidden;
+}
+
+.features__track {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 16px 24px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-color) transparent;
+}
+
+.features__track::-webkit-scrollbar {
+    height: 4px;
+}
+
+.features__track::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.features__track::-webkit-scrollbar-thumb {
+    background-color: var(--accent-color);
+    border-radius: 4px;
+}
+
+.feature-card {
+    background-color: #f2f2f2;
+    border-radius: var(--radius-card);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+    flex: 0 0 80vw;
+    scroll-snap-align: start;
+    max-width: 340px;
+}
+
+.feature-card__title {
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--primary-color);
+    align-self: flex-start;
+}
+
+.feature-card__img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+}
+
+.feature-card__btn {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--primary-color);
+    border: 1px solid var(--accent-color);
+    border-radius: var(--radius-pill);
+    padding: 8px 24px;
+    background-color: var(--secondary-color);
+    transition: background-color var(--transition), color var(--transition);
+}
+
+.feature-card__btn:hover {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+/*
+   MAYBACH — Mobile First
+*/
+.maybach__hero {
+    position: relative;
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+}
+
+.maybach__hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.maybach__hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.2) 50%, transparent 100%);
+}
+
+.maybach__hero-content {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    z-index: 1;
+    color: var(--secondary-color);
+    max-width: 280px;
+}
+
+.maybach__hero-title {
+    font-size: 22px;
+    font-weight: 300;
+    margin-bottom: 8px;
+    line-height: 1.2;
+}
+
+.maybach__hero-desc {
+    font-size: 11px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.maybach__split {
+    display: flex;
+    flex-direction: column;
+    padding: 32px 24px;
+    gap: 24px;
+}
+
+.maybach__split-text {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.maybach__split-title {
+    font-size: 28px;
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--primary-color);
+    font-family: var(--font-serif);
+}
+
+.maybach__split-desc {
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--text-color);
+}
+
+.maybach__split-link {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--primary-color);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color var(--transition);
+    align-self: flex-start;
+}
+
+.maybach__split-link:hover {
+    color: var(--accent-color);
+}
+
+.maybach__split-img-wrap {
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.maybach__split-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+/*
+   FOOTER CTA — Mobile First
+*/
+.footer-cta {
+    background-color: #2a2a2a;
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+}
+
+.footer-cta__text {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--secondary-color);
+    line-height: 1.6;
+    max-width: 360px;
+}
+
+.footer-cta__btn {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+    border-radius: var(--radius-pill);
+    padding: 10px 24px;
+    white-space: nowrap;
+    transition: background-color var(--transition), color var(--transition);
+}
+
+.footer-cta__btn:hover {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+/*
+   FOOTER MAIN — Mobile First
+*/
+.footer-main {
+    background-color: var(--primary-color);
+    padding: 48px 24px 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+    position: relative;
+    text-align: center;
+}
+
+.footer-newsletter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    max-width: 480px;
+    text-align: center;
+}
+
+.footer-newsletter__title {
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--secondary-color);
+}
+
+.footer-newsletter__desc {
+    font-size: 12px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.footer-newsletter__form {
+    display: flex;
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 24px;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.footer-newsletter__input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 12px 18px;
+    font-size: 12px;
+    font-family: var(--font-family);
+    color: var(--secondary-color);
+}
+
+.footer-newsletter__input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.footer-newsletter__btn {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border: none;
+    padding: 10px 20px;
+    font-size: 12px;
+    font-weight: 500;
+    font-family: var(--font-family);
+    cursor: pointer;
+    border-radius: var(--radius-pill);
+    margin: 4px;
+    transition: background-color var(--transition);
+}
+
+.footer-newsletter__btn:hover {
+    background-color: var(--accent-color);
+}
+
+.footer-newsletter__check {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.footer-newsletter__check input {
+    margin-top: 2px;
+    flex-shrink: 0;
+    accent-color: var(--secondary-color);
+}
+
+.footer-newsletter__check span {
+    font-size: 11px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.5;
+}
+
+.footer-social {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-social__link {
+    color: rgba(255, 255, 255, 0.6);
+    transition: color var(--transition);
+}
+
+.footer-social__link:hover {
+    color: var(--secondary-color);
+}
+
+.footer-links {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    width: 100%;
+    text-align: center;
+}
+
+.footer-links__title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--secondary-color);
+    margin-bottom: 16px;
+    letter-spacing: 0.05em;
+}
+
+.footer-links ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-links a {
+    font-size: 12px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.5);
+    transition: color var(--transition);
+}
+
+.footer-links a:hover {
+    color: var(--secondary-color);
+}
+
+.footer-top {
+    position: absolute;
+    bottom: 32px;
+    right: 24px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.15);
+    color: var(--secondary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color var(--transition);
+}
+
+.footer-top:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+/*
+   DESKTOP — min-width: 769px
+*/
+@media (min-width: 769px) {
+
+    /* — Header — */
+    #nav-menu {
+        position: static;
+        height: auto;
+        width: auto;
+        padding: 0;
+        border-left: none;
+        transform: none;
+        transition: none;
+    }
+
+    #nav-menu ul {
+        flex-direction: row;
+        gap: 32px;
+    }
+
+    #nav-menu a {
+        font-size: 12px;
+    }
+
+    .nav-hamburger {
+        display: none;
+    }
+
+    .sidebar-overlay {
+        display: none !important;
+    }
+
+    /* — Hero — */
+    .hero {
+        height: 60vh;
+    }
+
+    .hero__content {
+        bottom: 48px;
+        left: 48px;
+    }
+
+    .hero__title {
+        font-size: 52px;
+        margin-bottom: 10px;
+    }
+
+    .hero__subtitle {
+        font-size: 18px;
+    }
+
+    /* — Products — */
+    .products {
+        padding: var(--section-padding-desktop);
+    }
+
+    .products__grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+    }
+
+    .card__header {
+        text-align: left;
+    }
+
+    .card__img {
+        height: 200px;
+    }
+
+    /* — Dealer — */
+    .dealer__text {
+        padding: 48px 40px;
+        text-align: left;
+    }
+
+    .dealer__title {
+        font-size: 52px;
+        max-width: 600px;
+        margin-bottom: 20px;
+    }
+
+    .dealer__desc {
+        font-size: 14px;
+        margin: 0;
+        max-width: 400px;
+    }
+
+    .dealer__map {
+        height: 420px;
+    }
+
+    .dealer__card {
+        bottom: 40px;
+        left: 40px;
+        max-width: 300px;
+        padding: 28px;
+    }
+
+    .dealer__card-title {
+        font-size: 22px;
+    }
+
+    /* — Features — */
+    .features {
+        padding: 40px 0;
+    }
+
+    .features__track {
+        padding: 16px 32px;
+        gap: 24px;
+    }
+
+    .feature-card {
+        flex: 0 0 300px;
+        align-items: flex-start;
+    }
+
+    .feature-card__img {
+        height: 200px;
+    }
+
+    .feature-card__btn {
+        align-self: flex-start;
+    }
+
+    /* — Maybach — */
+    .maybach__hero {
+        height: 420px;
+    }
+
+    .maybach__hero-content {
+        bottom: 40px;
+        left: 40px;
+        max-width: 360px;
+    }
+
+    .maybach__hero-title {
+        font-size: 36px;
+        margin-bottom: 12px;
+    }
+
+    .maybach__hero-desc {
+        font-size: 12px;
+    }
+
+    .maybach__split {
+        flex-direction: row;
+        align-items: center;
+        padding: 64px 40px;
+        gap: 48px;
+    }
+
+    .maybach__split-text {
+        flex: 1;
+    }
+
+    .maybach__split-title {
+        font-size: 40px;
+    }
+
+    .maybach__split-desc {
+        font-size: 13px;
+    }
+
+    .maybach__split-img-wrap {
+        flex: 1;
+    }
+
+    .maybach__split-img {
+        height: 340px;
+    }
+
+    /* — Footer — */
+    .footer-cta {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 48px;
+        padding: 28px 48px;
+    }
+
+    .footer-cta__text {
+        max-width: 480px;
+    }
+
+    .footer-main {
+        padding: 56px 48px 80px;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-newsletter {
+        align-items: center;
+        text-align: center;
+        max-width: 560px;
+    }
+
+    .footer-social {
+        justify-content: center;
+    }
+
+    .footer-links {
+        grid-template-columns: repeat(3, 1fr);
+        text-align: left;
+        max-width: 700px;
+    }
+}
