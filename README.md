@@ -48,7 +48,7 @@
 
 | Desktop | Mobile |
 |:---:|:---:|
-| ![Desktop preview](https://placehold.co/800x450/000000/FFFFFF?text=Desktop+View) | ![Mobile preview](https://placehold.co/375x667/000000/FFFFFF?text=Mobile+View) |
+| ![Desktop preview]([https://placehold.co/800x450/000000/FFFFFF?text=Desktop+View](https://pin.it/5DZ8eGcMi)) | ![Mobile preview](https://pin.it/3BBOCbUtq) |
 
 > ⚠️ **Nota:** Sustituir estas imágenes de placeholder por capturas reales del proyecto antes de publicar.
 > ⚠️ **Note:** Replace these placeholder images with real screenshots before publishing.
