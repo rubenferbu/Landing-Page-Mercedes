@@ -33,15 +33,17 @@
 
 ---
 
-## 🖥️ Vista previa
+## 🖥️ Vista en navegador
 
-<div align="center">
+<p align="center">
+  <img src="assets/images/desktop.png" width="90%">
+</p>
 
-| Desktop | Mobile |
-|:---:|:---:|
-| ![Desktop preview](https://placehold.co/800x450/000000/FFFFFF?text=Desktop+View) | ![Mobile preview](https://placehold.co/375x667/000000/FFFFFF?text=Mobile+View) |
+## 📱 Vista en móvil
 
-</div>
+<p align="center">
+  <img src="assets/images/mobile.png" width="300">
+</p>
 
 ---
 
