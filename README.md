@@ -11,7 +11,7 @@
 
 <br/>
 
-> **Práctica frontend** perteneciente al programa formativo **[The Powerd](https://thepowerd.com)**.
+> **Práctica frontend** perteneciente al programa formativo **[The Powerd](https://thepower.education/)**.
 > Maquetación completa de una landing page de Mercedes-Benz a partir de un diseño Figma,
 > usando únicamente HTML semántico y CSS — sin una sola línea de JavaScript.
 
@@ -242,7 +242,7 @@ siempre que mantengas el aviso de copyright original.
 
 <div align="center">
 
-Desarrollado con 🖤 como práctica de **[The Powerd](https://thepowerd.com)**
+Desarrollado con 🖤 como práctica de **[The Powerd](https://thepower.education/)**
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
